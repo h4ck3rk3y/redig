@@ -5,11 +5,16 @@
 function AddController($scope, AddTopic, $window)
 {
 	$scope.add = function(topic)
-	{
-		AddTopic.post({topic: topic}, function(data)
+	{	if(topic.length <= 255){
+			AddTopic.post({topic: topic}, function(data)
+			{
+				$window.location = '/topic/' + data.id;
+			});
+		}
+		else
 		{
-			$window.location = '/topic/' + data.id;
-		});
+			alert("Topic should not exceed 255 characters");
+		}
 	}
 }
 
@@ -79,14 +84,13 @@ function HomeController($scope, Topic, Upvote, Downvote, $timeout)
 	});
 }
 
-function AllTopicsController($scope, $routeParams, $timeout, AllTopics, $window)
+function AllTopicsController($scope, $routeParams, $timeout, AllTopics, $window, Upvote, Downvote)
 {
 	var topicResults = AllTopics.get({page: $routeParams.page}, function(data) {
         $scope.topics = data;
     });
 
 	$scope.upvote = function(topic) {
-		$scope.topics[topic].score+=1;
 		Upvote.get({topic_id: topic}, function(data) {
 			var topicResults = AllTopics.get({page: $routeParams.page}, function(data){
 				$scope.topics = data;
@@ -95,7 +99,6 @@ function AllTopicsController($scope, $routeParams, $timeout, AllTopics, $window)
 	}
 
 	$scope.downvote = function(topic) {
-		$scope.topics[topic].score+=1;
 		Downvote.get({topic_id: topic}, function(data) {
 			var topicResults = AllTopics.get({page: $routeParams.page}, function(data){
 				$scope.topics = data;

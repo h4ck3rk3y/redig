@@ -1,15 +1,14 @@
 <div ng-show="topics.status == 'success'">
 	<div ng-repeat="topic in topics.topics">
+		<font size="8">{{topic.topic}}</font>
+		<p class="text-right" style="float:right;">
 		<font size="5"><a href ng-click="upvote(topic.id)">+</a>
 		<a href ng-click="downvote(topic.id)">-</a></font>
-		<font size="8">{{topic.topic}}</font>
-		<p class="text-right" style="float:right"><font size="7" color="red">{{topic.score}}</font>
+		<font size="5" color="red">{{topic.score}}</font>
 		<i>{{topic.created_at}}</i>
 		</p>
 	</div>
 </div>
-
-
 <div>
 	<a href ng-click="next()">Next</a>
 	<a href ng-click="previous()">Previous</a>
