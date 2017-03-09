@@ -17,3 +17,5 @@ To test
 ```bash
     $ pytest
 ```
+
+Test the site live on http://gyani.pythonanywhere.com
