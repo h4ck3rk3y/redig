@@ -15,6 +15,9 @@ topics=Topics()
 # A function to serve basic webpages
 @app.route('/')
 @app.route('/about')
+@app.route('/add')
+@app.route('/all/<page>')
+@app.route('/topic/<page>')
 def basic_pages(**kwargs):
 	return make_response(open('templates/index.html').read())
 
@@ -45,7 +48,7 @@ def new_topic():
 	elif 'topic' in data:
 		result = {'status': 'error', 'message': 'Topics should be less than 255 characters.'}, 400
 	else:
-		result = {'status': 'error', 'message': 'Field topic not found'}
+		result = {'status': 'error', 'message': 'Field topic not found'}, 400
 
 	return jsonify(**result), status
 
