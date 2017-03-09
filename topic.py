@@ -3,6 +3,19 @@ from datetime import datetime as dt
 
 class Topic(object):
 
+	"""
+		The topics class represents a topic object.
+
+		Attributes
+
+		topic The topic iteslf, a string
+		upvotes number of upvotes
+		downvotes number of downvotes
+		id The id of the topic
+		created_at Keeps track of the creation of the topic
+
+	"""
+
 	def __init__(self, topic, upvotes=1, downvotes=0):
 		self.topic = topic
 		self.upvotes = upvotes
@@ -10,9 +23,11 @@ class Topic(object):
 		self.id = None
 		self.created_at = dt.now()
 
+	# Simply increases the number of upvotes
 	def upvote(self):
 		self.upvotes +=1
 
+	# Simply increases the number  of downvotes
 	def downvote(self):
 		self.downvotes+=1
 

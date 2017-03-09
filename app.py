@@ -38,6 +38,7 @@ def get_topic(topic_id):
 		result['status'] = 'success'
 		return jsonify(**result), 200
 
+# API end to post a new topic
 @app.route('/api/topics', methods=["POST"])
 def new_topic():
 	data = request.get_json(silent=True)
@@ -52,6 +53,7 @@ def new_topic():
 
 	return jsonify(**result), status
 
+# API end to upvote a given topic
 @app.route('/api/topics/upvote/<int:topic_id>', methods=["GET"])
 def upvote(topic_id):
 	if topic_id < topics.getNumberOfTopics():
@@ -65,6 +67,7 @@ def upvote(topic_id):
 
 	return jsonify(**result), status
 
+# API end to downvote a given topic
 @app.route('/api/topics/downvote/<int:topic_id>', methods=["GET"])
 def downvote(topic_id):
 	if topic_id < topics.getNumberOfTopics():
@@ -78,6 +81,7 @@ def downvote(topic_id):
 
 	return jsonify(**result), status
 
+# API End to fetch topics
 @app.route('/api/topics/all/<int:page>', methods=["GET"])
 @app.route('/api/topics/all/', methods=["GET"])
 def get_all_topics(page=0):
@@ -98,14 +102,7 @@ def get_all_topics(page=0):
 
 	return jsonify(**{'status': 'success', 'count': len(result), 'topics': result}), 200
 
-@app.route('/api/topics/pages', methods=["GET"])
-def get_pages():
-	if topics.getNumberOfTopics() == 0:
-		total_pages = 0
-	else:
-		total_pages = math.ceil(topics.getNumberOfTopics()/20.0)
-	return jsonify(**{'status': 'success', 'pages': total_pages}), 200
-
+# API End to fetch the latest topics
 @app.route('/api/topics/top', methods=["GET"])
 def get_top():
 	top_topics = topics.getTop20()
