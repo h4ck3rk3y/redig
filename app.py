@@ -47,9 +47,9 @@ def new_topic():
 		topics.addTopic(topic)
 		result,status = {'status': 'success', 'id': topic.id}, 200
 	elif 'topic' in data:
-		result = {'status': 'error', 'message': 'Topics should be less than 255 characters.'}, 400
+		result,status = {'status': 'error', 'message': 'Topics should be less than 255 characters.'}, 400
 	else:
-		result = {'status': 'error', 'message': 'Field topic not found'}, 400
+		result,status = {'status': 'error', 'message': 'Field topic not found'}, 400
 
 	return jsonify(**result), status
 

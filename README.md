@@ -11,3 +11,9 @@ To set up.
 ```
 
 Then simply visit http://localhost:5000 on browser.
+
+To test
+
+```bash
+    $ pytest
+```
