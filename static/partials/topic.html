@@ -1,0 +1,15 @@
+<div ng-show="topics.status == 'success'">
+	<div>
+		<font size="5"><a href ng-click="upvote(topics.id)">+</a>
+		<a href ng-click="downvote(topics.id)">-</a></font>
+		<font size="8">{{topics.topic}}</font>
+		<p class="text-right" style="float:right"><font size="7" color="red">{{topics.score}}</font>
+		<i>{{topics.created_at}}</i>
+		</p>
+	</div>
+</div>
+<div ng-show="topics.status == 'error'">
+	<div>
+		<h3>Invalid Topic Id</h3>
+	</div>
+</div>
